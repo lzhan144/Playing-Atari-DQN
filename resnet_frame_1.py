@@ -7,7 +7,7 @@ Original file is located at
     https://colab.research.google.com/drive/1xoSCwQ-Du9ReZdc0MaSLj-6h-8T39cEQ
 """
 
-#'''
+'''
 !pip install gym
 !pip install numpy
 !pip install gym[atari]
@@ -16,7 +16,7 @@ Original file is located at
 !pip install tqdm
 !pip install Pillow
 !pip install opencv-python
-#'''
+'''
 
 import random
 import numpy as np
