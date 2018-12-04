@@ -7,7 +7,7 @@ Original file is located at
     https://colab.research.google.com/drive/1m91dcphBtjsrgbNAlZyPlhiA_28AkhXC
 """
 
-#'''
+'''
 !pip install gym
 !pip install numpy
 !pip install gym[atari]
@@ -16,7 +16,7 @@ Original file is located at
 !pip install tqdm
 !pip install Pillow
 !pip install opencv-python
-#'''
+'''
 
 import random
 import numpy as np
@@ -229,7 +229,7 @@ class DQNAgent():
         # These are hyper parameters for the DQN
         self.discount_factor = 0.99
         self.learning_rate = 0.00025
-        self.memory_size = 300000
+        self.memory_size = 100000
         self.epsilon = 1.0 
         self.epsilon_min = 0.01*5
         self.explore_step =300000 #5000*20
