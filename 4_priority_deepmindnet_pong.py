@@ -787,14 +787,14 @@ for e in range(EPISODES):
             episodes.append(e)
             pylab.plot(episodes, scores, 'b')
             pylab.savefig("cartpole_dqn.png")
-            np.savetxt('/content/4_frame_priority_deepmindnet_pong', scores, fmt='%.2f')
+            np.savetxt('4_frame_priority_deepmindnet_pong', scores, fmt='%.2f')
             print_counter += 1
             if print_counter == 10:
                 print_counter = 0
                 print("episode:", e, " ave_scores:", ave_scores / 10., "  memory length:",
                       agent.memory.tree.n_entries, "  epsilon:", agent.epsilon)
                 ave_scores = 0
-                PATH = "/content/1_frame_Pong_raw_pixel_linear"+str(e)+".pt"
+                PATH = "1_frame_Pong_raw_pixel_linear"+str(e)+".pt"
                 torch.save(agent.model, PATH)
                 
 
@@ -804,5 +804,5 @@ for e in range(EPISODES):
                 torch.save(agent.model, "1_frame_Pong_raw_pixel_linear_ultimate")
                 sys.exit()
     if e % 10 == 0:
-        PATH = "/content/4frame_Priority_deepmind"+str(e)+".pt"
+        PATH = "4frame_Priority_deepmind"+str(e)+".pt"
         torch.save(agent.model.state_dict(), PATH)
