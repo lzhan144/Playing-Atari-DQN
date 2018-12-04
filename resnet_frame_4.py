@@ -931,7 +931,7 @@ for e in range(EPISODES):
             episodes.append(e)
             pylab.plot(episodes, scores, 'b')
             pylab.savefig("cartpole_dqn.png")
-            np.savetxt('/content/4_frame_priority_deepmindnet_pong', scores, fmt='%.2f')
+            np.savetxt('4_frame_priority_deepmindnet_pong', scores, fmt='%.2f')
             print_counter += 1
             if print_counter == 10:
                 print_counter = 0
