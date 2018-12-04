@@ -941,7 +941,7 @@ for e in range(EPISODES):
                 f.write("episode:  "+str(e)+"  ave_scores:   "+str(ave_scores / 10.)+"  memory length:  "+str(agent.memory.tree.n_entries)+ "  epsilon:  "+ str(agent.epsilon)+"\n")
                 f.close()
                 ave_scores = 0
-                PATH = "4_frame_Pong_raw_pixel_linear"+str(e)+".pt"
+                PATH = "4_frame_Pong_raw_pixel_linear.pt"
                 torch.save(agent.model, PATH)
 
 
