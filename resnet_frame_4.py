@@ -941,14 +941,14 @@ for e in range(EPISODES):
                 f.write("episode:  "+str(e)+"  ave_scores:   "+str(ave_scores / 10.)+"  memory length:  "+str(agent.memory.tree.n_entries)+ "  epsilon:  "+ str(agent.epsilon)+"\n")
                 f.close()
                 ave_scores = 0
-                PATH = "/content/1_frame_Pong_raw_pixel_linear"+str(e)+".pt"
+                PATH = "4_frame_Pong_raw_pixel_linear"+str(e)+".pt"
                 torch.save(agent.model, PATH)
 
 
             # if the mean of scores of last 10 episode is bigger than 10
             # stop training
             if np.mean(scores[-min(10, len(scores)):]) > 18:
-                torch.save(agent.model, "1_frame_Pong_raw_pixel_linear_ultimate")
+                torch.save(agent.model, "4_frame_Pong_raw_pixel_linear_ultimate")
                 sys.exit()
 
 """# New Section"""
