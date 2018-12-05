@@ -353,7 +353,7 @@ class DQNAgent():
         # These are hyper parameters for the DQN
         self.discount_factor = 0.99
         self.learning_rate = 0.00025
-        self.memory_size = 100000
+        self.memory_size = 300000
         self.epsilon = 1.0 
         self.epsilon_min = 0.01*5
         self.explore_step =300000 #5000*20
