@@ -7,7 +7,7 @@ Original file is located at
     https://colab.research.google.com/drive/1am3K2bm1b0PniHmNWEXWxwIpv49CfWZV
 """
 
-#'''
+'''
 !pip install gym
 !pip install numpy
 !pip install gym[atari]
@@ -16,7 +16,7 @@ Original file is located at
 !pip install tqdm
 !pip install Pillow
 !pip install opencv-python
-#'''
+'''
 
 import random
 import numpy as np
@@ -359,7 +359,7 @@ class DQNAgent():
         self.explore_step =1000000 #300000 #5000*20
         self.epsilon_decay = (self.epsilon - self.epsilon_min) / self.explore_step
         self.batch_size = 32
-        self.train_start = 100000
+        self.train_start = 10000
 
         # create prioritized replay memory using SumTree
         self.memory = Memory(self.memory_size)    
@@ -961,12 +961,12 @@ for e in range(EPISODES):
             pylab.savefig("cartpole_dqn.png")
             np.savetxt('Breakout_transfer_unfrozen_conv3_fc', scores, fmt='%.2f')
             print_counter += 1
-            if print_counter == 50:
+            if print_counter == 100:
                 print_counter = 0
-                print("episode:", e, " ave_scores:", ave_scores / 50., "  memory length:",
+                print("episode:", e, " ave_scores:", ave_scores / 100., "  memory length:",
                       agent.memory.tree.n_entries, "  epsilon:", agent.epsilon)
                 f = open("log.txt", "a")
-                f.write("episode:  "+str(e)+"  ave_scores:   "+str(ave_scores / 50.)+"  memory length:  "+str(agent.memory.tree.n_entries)+ "  epsilon:  "+ str(agent.epsilon)+"\n")
+                f.write("episode:  "+str(e)+"  ave_scores:   "+str(ave_scores / 100.)+"  memory length:  "+str(agent.memory.tree.n_entries)+ "  epsilon:  "+ str(agent.epsilon)+"\n")
                 f.close()
                 ave_scores = 0
                 PATH = "Breakout_transfer_unfrozen_conv3_fc"+str(e)+".pt"
