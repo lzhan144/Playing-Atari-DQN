@@ -958,7 +958,7 @@ for e in range(EPISODES):
             ave_scores += score
             episodes.append(e)
             pylab.plot(episodes, scores, 'b')
-            pylab.savefig("cartpole_dqn.png")
+            pylab.savefig("breakout_dqn.png")
             np.savetxt('Breakout_transfer_unfrozen_conv3_fc', scores, fmt='%.2f')
             print_counter += 1
             if print_counter == 100:
@@ -969,7 +969,7 @@ for e in range(EPISODES):
                 f.write("episode:  "+str(e)+"  ave_scores:   "+str(ave_scores / 100.)+"  memory length:  "+str(agent.memory.tree.n_entries)+ "  epsilon:  "+ str(agent.epsilon)+"\n")
                 f.close()
                 ave_scores = 0
-                PATH = "Breakout_transfer_unfrozen_conv3_fc"+str(e)+".pt"
+                PATH = "Breakout_transfer_unfrozen_conv3_fc.pt"
                 torch.save(agent.model, PATH)
 
 
