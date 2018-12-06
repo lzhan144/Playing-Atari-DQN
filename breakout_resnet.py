@@ -979,15 +979,4 @@ for e in range(EPISODES):
                 torch.save(agent.model, "Breakout_transfer_unfrozen_conv3_fc_ultimate")
                 sys.exit()
 
-list(agent.model.fc.parameters())
-
-list(agent.model.parameters())
-
-a_model = torch.load("4_frame_Pong_raw_pixel_linear_ultimate")
-list(a_model.fc.parameters())
-
-for param in agent.model.parameters():
-    print(param.requires_grad)
-
-agent.model.fc
 
