@@ -866,7 +866,7 @@ model = resnet18_DQN(action_size).to(device)
 agent = DQNAgent(action_size)
 PATH = "Playing-Atari-DQN/4_frame_Pong_raw_pixel_linear_ultimate.pt"
 agent.model=torch.load(PATH)
-agent.epsilon = 0.1
+agent.epsilon = 1
 agent.train_start = 1
 scores, episodes = [], []
 
