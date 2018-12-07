@@ -718,7 +718,7 @@ env = wrap_deepmind(env)
 
 action_size = env.action_space.n
 agent = DQNAgent(action_size)
-PATH = "/Playing-Atari-DQN/4_frame_Pong_raw_pixel_linear_ultimate.pt"
+PATH = "Playing-Atari-DQN/4_frame_Pong_raw_pixel_linear_ultimate.pt"
 agent.model=torch.load(PATH)
 agent.train_start = 1
 
