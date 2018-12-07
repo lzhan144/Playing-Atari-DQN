@@ -958,7 +958,7 @@ for e in range(EPISODES):
 
             pylab.plot(episodes, scores, 'b')
             pylab.savefig("breakout_dqn.png")
-            np.savetxt('Breakout_transfer_unfrozen_conv3_fc', scores, fmt='%.2f')
+            np.savetxt('Breakout_transfer_unfrozen_score', scores, fmt='%.2f')
             print_counter += 1
             if print_counter == 100:
                 print_counter = 0
@@ -968,14 +968,14 @@ for e in range(EPISODES):
                 f.write("episode:  "+str(e)+"  ave_scores:   "+str(ave_scores / 100.)+"  memory length:  "+str(agent.memory.tree.n_entries)+ "  epsilon:  "+ str(agent.epsilon)+"\n")
                 f.close()
                 ave_scores = 0
-                PATH = "Breakout_transfer_unfrozen_conv3_fc.pt"
+                PATH = "Breakout_transfer_unfrozen.pt"
                 torch.save(agent.model, PATH)
 
 
             # if the mean of scores of last 10 episode is bigger than 10
             # stop training
             if np.mean(scores[-min(10, len(scores)):]) > 350:
-                torch.save(agent.model, "Breakout_transfer_unfrozen_conv3_fc_ultimate")
+                torch.save(agent.model, "Breakout_transfer_unfrozen_ultimate.pt")
                 sys.exit()
 
 
