@@ -864,7 +864,9 @@ model = resnet18_DQN(action_size).to(device)
 #model.load_state_dict(torch.load(PATH))
 
 agent = DQNAgent(action_size)
-
+PATH = "Playing-Atari-DQN/4_frame_Pong_raw_pixel_linear_ultimate.pt"
+agent.model=torch.load(PATH)
+agent.train_start = 1
 scores, episodes = [], []
 
 print_counter = 0
@@ -930,7 +932,7 @@ for e in range(EPISODES):
             ave_scores += score
             episodes.append(e)
             pylab.plot(episodes, scores, 'b')
-            pylab.savefig("cartpole_dqn.png")
+            pylab.savefig("pong_dqn.png")
             np.savetxt('4_frame_priority_deepmindnet_pong', scores, fmt='%.2f')
             print_counter += 1
             if print_counter == 10:
@@ -947,8 +949,8 @@ for e in range(EPISODES):
 
             # if the mean of scores of last 10 episode is bigger than 10
             # stop training
-            if np.mean(scores[-min(10, len(scores)):]) > 18:
-                torch.save(agent.model, "4_frame_Pong_raw_pixel_linear_ultimate")
+            if np.mean(scores[-min(10, len(scores)):]) > 180:
+                torch.save(agent.model, "4_frame_Pong_raw_pixel_linear_ultimate.pt")
                 sys.exit()
 
 """# New Section"""
