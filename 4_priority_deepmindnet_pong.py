@@ -717,8 +717,10 @@ env.seed(seed)
 env = wrap_deepmind(env)
 
 action_size = env.action_space.n
-
 agent = DQNAgent(action_size)
+PATH = "/Playing-Atari-DQN/4_frame_Pong_raw_pixel_linear_ultimate.pt"
+agent.model=torch.load(PATH)
+
 #PATH = "/content/oneframe80.pt"
 #agent.model.load_state_dict(torch.load(PATH))
 scores, episodes = [], []
@@ -786,7 +788,7 @@ for e in range(EPISODES):
             ave_scores += score
             episodes.append(e)
             pylab.plot(episodes, scores, 'b')
-            pylab.savefig("cartpole_dqn.png")
+            pylab.savefig("pong_dqn.png")
             np.savetxt('4_frame_priority_deepmindnet_pong', scores, fmt='%.2f')
             print_counter += 1
             if print_counter == 10:
@@ -794,15 +796,15 @@ for e in range(EPISODES):
                 print("episode:", e, " ave_scores:", ave_scores / 10., "  memory length:",
                       agent.memory.tree.n_entries, "  epsilon:", agent.epsilon)
                 ave_scores = 0
-                PATH = "1_frame_Pong_raw_pixel_linear"+str(e)+".pt"
+                PATH = "4_frame_Pong_raw_pixel_linear.pt"
                 torch.save(agent.model, PATH)
                 
 
             # if the mean of scores of last 10 episode is bigger than 10
             # stop training
-            if np.mean(scores[-min(10, len(scores)):]) > 18:
-                torch.save(agent.model, "1_frame_Pong_raw_pixel_linear_ultimate")
+            if np.mean(scores[-min(10, len(scores)):]) > 180:
+                torch.save(agent.model, "4_frame_Pong_raw_pixel_linear_ultimate.pt")
                 sys.exit()
-    if e % 10 == 0:
-        PATH = "4frame_Priority_deepmind"+str(e)+".pt"
-        torch.save(agent.model.state_dict(), PATH)
+#     if e % 10 == 0:
+#         PATH = "4frame_Priority_deepmind.pt"
+#         torch.save(agent.model.state_dict(), PATH)
