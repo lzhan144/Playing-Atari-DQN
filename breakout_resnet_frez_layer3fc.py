@@ -383,7 +383,7 @@ class DQNAgent():
         self.update_target_model()
 
         if self.load_model:
-            self.model = torch.load('save_model/cartpole_dqn')
+            self.model = torch.load('4_frame_Pong_raw_pixel_linear.pt')
 
     #### modify here ############################################################      
     # weight xavier initialize
@@ -847,7 +847,7 @@ class Queue:
         return sequence
 
 env = gym.make('BreakoutNoFrameskip-v4')
-f = open("log.txt", "a")
+f = open("log_frez2.txt", "a")
 f.write("\n====================\n")
 f.close()
 seed = random.randint(0, 9999)
@@ -868,7 +868,7 @@ print(action_size)
 #model.load_state_dict(torch.load(PATH))
 
 agent = DQNAgent(action_size)
-agent.model = torch.load("/home/hanxingli54/resnet_frame_4_ipynb_40_40_349.pt")
+agent.model = torch.load("4_frame_Pong_raw_pixel_linear.pt")
 
 for param in agent.model.parameters():
     param.requires_grad = False
@@ -968,24 +968,24 @@ for e in range(EPISODES):
 
             #pylab.plot(episodes, scores, 'b')
             #pylab.savefig("breakout_dqn.png")
-            np.savetxt('Breakout_transfer_unfrozen_score', scores, fmt='%.2f')
+            np.savetxt('Breakout_transfer_score_frez2', scores, fmt='%.2f')
             print_counter += 1
             if print_counter == 100:
                 print_counter = 0
                 print("episode:", e, " ave_scores:", ave_scores / 100., "  memory length:",
                       agent.memory.tree.n_entries, "  epsilon:", agent.epsilon)
-                f = open("log.txt", "a")
+                f = open("log_frez2.txt", "a")
                 f.write("episode:  "+str(e)+"  ave_scores:   "+str(ave_scores / 100.)+"  memory length:  "+str(agent.memory.tree.n_entries)+ "  epsilon:  "+ str(agent.epsilon)+"\n")
                 f.close()
                 ave_scores = 0
-                PATH = "Breakout_transfer_unfrozen.pt"
+                PATH = "Breakout_transfer_frez2.pt"
                 torch.save(agent.model, PATH)
 
 
             # if the mean of scores of last 10 episode is bigger than 10
             # stop training
             if np.mean(scores[-min(10, len(scores)):]) > 350:
-                torch.save(agent.model, "Breakout_transfer_unfrozen_ultimate.pt")
+                torch.save(agent.model, "Breakout_transfer_frez2.pt")
                 sys.exit()
 
 
