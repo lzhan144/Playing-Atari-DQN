@@ -353,10 +353,10 @@ class DQNAgent():
         # These are hyper parameters for the DQN
         self.discount_factor = 0.99
         self.learning_rate = 0.00025
-        self.memory_size = 100000
+        self.memory_size = 300000
         self.epsilon = 1.0 
         self.epsilon_min = 0.1
-        self.explore_step =100000 #300000 #5000*20
+        self.explore_step =300000 #300000 #5000*20
         self.epsilon_decay = (self.epsilon - self.epsilon_min) / self.explore_step
         self.batch_size = 32
         self.train_start = 50000
@@ -957,25 +957,25 @@ for e in range(EPISODES):
             #score = score if score == 500 else score + 10
 
             pylab.plot(episodes, scores, 'b')
-            pylab.savefig("breakout_dqn.png")
-            np.savetxt('Breakout_transfer_unfrozen_score', scores, fmt='%.2f')
+            pylab.savefig("breakout_dqn_30.png")
+            np.savetxt('Breakout_transfer_unfrozen_score_30', scores, fmt='%.2f')
             print_counter += 1
             if print_counter == 100:
                 print_counter = 0
                 print("episode:", e, " ave_scores:", ave_scores / 100., "  memory length:",
                       agent.memory.tree.n_entries, "  epsilon:", agent.epsilon)
-                f = open("log.txt", "a")
+                f = open("log_30.txt", "a")
                 f.write("episode:  "+str(e)+"  ave_scores:   "+str(ave_scores / 100.)+"  memory length:  "+str(agent.memory.tree.n_entries)+ "  epsilon:  "+ str(agent.epsilon)+"\n")
                 f.close()
                 ave_scores = 0
-                PATH = "Breakout_transfer_unfrozen.pt"
+                PATH = "Breakout_transfer_unfrozen_30.pt"
                 torch.save(agent.model, PATH)
 
 
             # if the mean of scores of last 10 episode is bigger than 10
             # stop training
             if np.mean(scores[-min(10, len(scores)):]) > 350:
-                torch.save(agent.model, "Breakout_transfer_unfrozen_ultimate.pt")
+                torch.save(agent.model, "Breakout_transfer_unfrozen_ultimate_30.pt")
                 sys.exit()
 
 
